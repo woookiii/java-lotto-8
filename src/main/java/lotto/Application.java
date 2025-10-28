@@ -1,14 +1,11 @@
 package lotto;
 
-import lotto.ui.CostUI;
+import lotto.runner.LottoRunner;
 
 public class Application {
     public static void main(String[] args) {
-
-        final CostUI costUI = new CostUI();
-
-        costUI.guideCostInput();
-        long cost = costUI.repeatGetCostInputUntilRight();
+        final LottoRunner lottoRunner = new LottoRunner();
+        lottoRunner.run();
     }
 
 
