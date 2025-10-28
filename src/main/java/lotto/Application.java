@@ -5,6 +5,12 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static void main(String[] args) {
         guideCostInput();
+
+        final String costInput = getInput();
+    }
+
+    private static String getInput() {
+        return Console.readLine();
     }
 
     private static void guideCostInput() {
