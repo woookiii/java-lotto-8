@@ -27,7 +27,14 @@ public class LottoRunner {
         List<String> parsedWinningNumbersInput = parse(winningNumbersInput);
         validateSize(parsedWinningNumbersInput);
         validateNumbersAreUnique(parsedWinningNumbersInput);
+        validateListIsNumeric(parsedWinningNumbersInput);
 
+    }
+
+    private void validateListIsNumeric(List<String> parsedWinningNumbersInput) {
+        for (String winningNumber : parsedWinningNumbersInput) {
+            inputFilter.validateInputIsNumeric(winningNumber);
+        }
     }
 
     private static void validateNumbersAreUnique(List<String> parsedWinningNumbersInput) {

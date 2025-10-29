@@ -11,7 +11,7 @@ public class InputFilter {
     public void validateInputIsNumeric(String input) {
         final boolean isNumeric = input.chars().allMatch(Character::isDigit);
         if (!isNumeric) {
-            throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지는 양수를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
         }
     }
 }
