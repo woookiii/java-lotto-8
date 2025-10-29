@@ -23,13 +23,26 @@ public class LottoRunner {
         final List<Lotto> lottos = new ArrayList<>();
         lottoService.purchase(lottoCount, lottos);
         guideWinningNumbersInput();
-        String winningNumbersInput = getInput();
-        List<String> parsedWinningNumbersInput = parse(winningNumbersInput);
+        final String winningNumbersInput = getInput();
+        final List<String> parsedWinningNumbersInput = parse(winningNumbersInput);
         validateSize(parsedWinningNumbersInput);
         validateNumbersAreUnique(parsedWinningNumbersInput);
         validateListIsNumeric(parsedWinningNumbersInput);
-        List<Integer> winningNumbers = getIntegerList(parsedWinningNumbersInput);
+        final List<Integer> winningNumbers = getIntegerList(parsedWinningNumbersInput);
+        validateNumbersAreInRange(winningNumbers);
 
+    }
+
+    private void validateNumbersAreInRange(List<Integer> winningNumbers) {
+        for (Integer winningNumber : winningNumbers) {
+            validateNumberIsInRange(winningNumber);
+        }
+    }
+
+    private static void validateNumberIsInRange(Integer winningNumber) {
+        if (winningNumber > 45 || winningNumber < 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 
     private static List<Integer> getIntegerList(List<String> parsedWinningNumbersInput) {
