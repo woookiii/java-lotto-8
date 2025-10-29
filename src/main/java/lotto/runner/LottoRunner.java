@@ -10,6 +10,11 @@ public class LottoRunner {
         costUI.guideCostInput();
         Integer cost = costUI.repeatGetCostInputUntilRight();
         Integer lottoCount = costToLottoCount(cost);
+        showLottoCount(lottoCount);
+    }
+
+    private static void showLottoCount(Integer lottoCount) {
+        System.out.format("%n%d개를 구매했습니다.", lottoCount);
     }
 
     private Integer costToLottoCount(Integer cost) {
