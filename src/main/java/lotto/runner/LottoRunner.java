@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import lotto.service.LottoService;
 import lotto.ui.CostUI;
+import lotto.validation.InputFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public class LottoRunner {
     private final CostUI costUI = new CostUI();
     private final LottoService lottoService = new LottoService();
+    private final InputFilter inputFilter = new InputFilter();
 
 
     public void run() {
@@ -21,8 +23,14 @@ public class LottoRunner {
         lottoService.purchase(lottoCount, lottos);
         guideWinningNumbersInput();
         String winningNumbersInput = getInput();
+        List<String> winningNumbers = parse(winningNumbersInput);
 
 
+
+    }
+
+    private static List<String> parse(String winningNumbersInput) {
+        return List.of(winningNumbersInput.split(","));
     }
 
     private String getInput() {
