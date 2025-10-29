@@ -28,7 +28,12 @@ public class LottoRunner {
         validateSize(parsedWinningNumbersInput);
         validateNumbersAreUnique(parsedWinningNumbersInput);
         validateListIsNumeric(parsedWinningNumbersInput);
+        List<Integer> winningNumbers = getIntegerList(parsedWinningNumbersInput);
 
+    }
+
+    private static List<Integer> getIntegerList(List<String> parsedWinningNumbersInput) {
+        return parsedWinningNumbersInput.stream().map(Integer::parseInt).toList();
     }
 
     private void validateListIsNumeric(List<String> parsedWinningNumbersInput) {
@@ -44,7 +49,7 @@ public class LottoRunner {
     }
 
     private static void validateSize(List<String> winningNumbers) {
-        if(winningNumbers.size() != 6){
+        if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
