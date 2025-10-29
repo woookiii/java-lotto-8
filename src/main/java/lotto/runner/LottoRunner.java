@@ -18,10 +18,15 @@ public class LottoRunner {
         showLottoCount(lottoCount);
         List<Integer> numbers = makeNumbers();
         Lotto lotto = new Lotto(numbers);
+        showNumbers(lotto);
 
     }
 
-    private static List<Integer> makeNumbers() {
+    private void showNumbers(Lotto lotto) {
+        System.out.println(lotto.getNumbers());
+    }
+
+    private List<Integer> makeNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;
