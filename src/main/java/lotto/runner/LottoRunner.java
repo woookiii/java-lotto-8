@@ -7,6 +7,7 @@ import lotto.ui.CostUI;
 import lotto.validation.InputFilter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class LottoRunner {
@@ -23,10 +24,16 @@ public class LottoRunner {
         lottoService.purchase(lottoCount, lottos);
         guideWinningNumbersInput();
         String winningNumbersInput = getInput();
-        List<String> winningNumbers = parse(winningNumbersInput);
-        validateSize(winningNumbers);
+        List<String> parsedWinningNumbersInput = parse(winningNumbersInput);
+        validateSize(parsedWinningNumbersInput);
+        validateNumbersAreUnique(parsedWinningNumbersInput);
 
+    }
 
+    private static void validateNumbersAreUnique(List<String> parsedWinningNumbersInput) {
+        if (parsedWinningNumbersInput.size() != new HashSet<>(parsedWinningNumbersInput).size()) {
+            throw new IllegalArgumentException("[ERROR] 중복되지 않은 숫자를 입력해야 합니다.");
+        }
     }
 
     private static void validateSize(List<String> winningNumbers) {
