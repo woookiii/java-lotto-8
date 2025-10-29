@@ -16,9 +16,15 @@ public class LottoRunner {
         costUI.guideCostInput();
         final Integer cost = costUI.repeatGetCostInputUntilRight();
         final Integer lottoCount = lottoService.costToLottoCount(cost);
-        List<Lotto> lottos = new ArrayList<>();
+        final List<Lotto> lottos = new ArrayList<>();
         lottoService.purchase(lottoCount, lottos);
+        guideWinningNumbersInput();
 
+
+    }
+
+    private void guideWinningNumbersInput() {
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 
 }
