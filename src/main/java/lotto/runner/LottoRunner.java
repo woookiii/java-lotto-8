@@ -1,82 +1,34 @@
 package lotto.runner;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
+import lotto.enumeration.GuideMessage;
+import lotto.enumeration.LottoNumber;
 import lotto.service.LottoService;
 import lotto.ui.CostUI;
-import lotto.validation.InputFilter;
+import lotto.ui.LottoUI;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class LottoRunner {
+
     private final CostUI costUI = new CostUI();
+    private final LottoUI lottoUI = new LottoUI();
     private final LottoService lottoService = new LottoService();
-    private final InputFilter inputFilter = new InputFilter();
 
 
     public void run() {
-        costUI.guideCostInput();
+        lottoUI.guideInput(GuideMessage.COST);
         final Integer cost = costUI.repeatGetCostInputUntilRight();
-        final Integer lottoCount = lottoService.costToLottoCount(cost);
+        final Integer lottoCount = lottoService.costToLottoCount(cost, LottoNumber.PRICE);
         final List<Lotto> lottos = new ArrayList<>();
         lottoService.purchase(lottoCount, lottos);
-        guideWinningNumbersInput();
-        final String winningNumbersInput = getInput();
-        final List<String> parsedWinningNumbersInput = parse(winningNumbersInput);
-        validateSize(parsedWinningNumbersInput);
-        validateNumbersAreUnique(parsedWinningNumbersInput);
-        validateListIsNumeric(parsedWinningNumbersInput);
-        final List<Integer> winningNumbers = getIntegerList(parsedWinningNumbersInput);
-        validateNumbersAreInRange(winningNumbers);
+        lottoUI.guideInput(GuideMessage.WINNING_NUMBERS);
+        final List<Integer> winningNumbers = lottoUI.repeatGetWinningNumbersInputUntilRight();
 
     }
 
-    private void validateNumbersAreInRange(List<Integer> winningNumbers) {
-        for (Integer winningNumber : winningNumbers) {
-            validateNumberIsInRange(winningNumber);
-        }
-    }
 
-    private static void validateNumberIsInRange(Integer winningNumber) {
-        if (winningNumber > 45 || winningNumber < 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-    }
 
-    private static List<Integer> getIntegerList(List<String> parsedWinningNumbersInput) {
-        return parsedWinningNumbersInput.stream().map(Integer::parseInt).toList();
-    }
-
-    private void validateListIsNumeric(List<String> parsedWinningNumbersInput) {
-        for (String winningNumber : parsedWinningNumbersInput) {
-            inputFilter.validateInputIsNumeric(winningNumber);
-        }
-    }
-
-    private static void validateNumbersAreUnique(List<String> parsedWinningNumbersInput) {
-        if (parsedWinningNumbersInput.size() != new HashSet<>(parsedWinningNumbersInput).size()) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않은 숫자를 입력해야 합니다.");
-        }
-    }
-
-    private static void validateSize(List<String> winningNumbers) {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
-        }
-    }
-
-    private static List<String> parse(String winningNumbersInput) {
-        return List.of(winningNumbersInput.split(","));
-    }
-
-    private String getInput() {
-        return Console.readLine();
-    }
-
-    private void guideWinningNumbersInput() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-    }
 
 }

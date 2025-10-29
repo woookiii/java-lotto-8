@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import lotto.enumeration.LottoNumber;
 import lotto.ui.LottoUI;
 
 import java.util.Collections;
@@ -27,7 +28,8 @@ public class LottoService {
     }
 
 
-    public Integer costToLottoCount(Integer cost) {
-        return cost / 1000;
+    public Integer costToLottoCount(Integer cost, LottoNumber price) {
+        return cost / price.getValue();
     }
+
 }

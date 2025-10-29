@@ -1,20 +1,22 @@
 package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validation.InputFilter;
+import lotto.enumeration.ErrorMessage;
+import lotto.enumeration.LottoNumber;
+import lotto.validation.InputValidator;
 
 public class CostUI {
 
-    private final InputFilter inputFilter = new InputFilter();
+    private final InputValidator inputValidator = new InputValidator();
 
     public Integer repeatGetCostInputUntilRight() {
         Integer cost;
         while (true) {
-            final String costInput = getInput();
+            final String costInput = Console.readLine();
             try {
-                inputFilter.validateInputIsNumeric(costInput);
+                inputValidator.isNumeric(costInput, ErrorMessage.NOT_NUMERIC);
                 cost = Integer.parseInt(costInput);
-                inputFilter.validateCost(cost);
+                inputValidator.isCostLottoPriceTimes(cost, ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS, LottoNumber.PRICE);
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
                 System.err.println(illegalArgumentException.getMessage());
@@ -24,13 +26,6 @@ public class CostUI {
     }
 
 
-    private String getInput() {
-        return Console.readLine();
-    }
 
-
-    public void guideCostInput() {
-        System.out.println("구입금액을 입력해 주세요.");
-    }
 
 }
