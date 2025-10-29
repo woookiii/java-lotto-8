@@ -7,6 +7,4 @@ public class Application {
         final LottoRunner lottoRunner = new LottoRunner();
         lottoRunner.run();
     }
-
-
 }

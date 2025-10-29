@@ -7,13 +7,13 @@ public class CostUI {
 
     private final InputFilter inputFilter = new InputFilter();
 
-    public long repeatGetCostInputUntilRight() {
-        long cost;
+    public Integer repeatGetCostInputUntilRight() {
+        Integer cost;
         while (true) {
             final String costInput = getInput();
             try {
                 inputFilter.validateInputIsNumeric(costInput);
-                cost = Long.parseLong(costInput);
+                cost = Integer.parseInt(costInput);
                 inputFilter.validateCost(cost);
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
