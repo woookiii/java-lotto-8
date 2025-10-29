@@ -1,5 +1,6 @@
 package lotto.runner;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import lotto.service.LottoService;
 import lotto.ui.CostUI;
@@ -19,8 +20,13 @@ public class LottoRunner {
         final List<Lotto> lottos = new ArrayList<>();
         lottoService.purchase(lottoCount, lottos);
         guideWinningNumbersInput();
+        String winningNumbersInput = getInput();
 
 
+    }
+
+    private String getInput() {
+        return Console.readLine();
     }
 
     private void guideWinningNumbersInput() {
