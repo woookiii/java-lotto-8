@@ -1,6 +1,11 @@
 package lotto.runner;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
 import lotto.ui.CostUI;
+
+import java.util.Collections;
+import java.util.List;
 
 public class LottoRunner {
     private final CostUI costUI = new CostUI();
@@ -8,13 +13,22 @@ public class LottoRunner {
 
     public void run() {
         costUI.guideCostInput();
-        Integer cost = costUI.repeatGetCostInputUntilRight();
-        Integer lottoCount = costToLottoCount(cost);
+        final Integer cost = costUI.repeatGetCostInputUntilRight();
+        final Integer lottoCount = costToLottoCount(cost);
         showLottoCount(lottoCount);
+        List<Integer> numbers = makeNumbers();
+        Lotto lotto = new Lotto(numbers);
+
     }
 
-    private static void showLottoCount(Integer lottoCount) {
-        System.out.format("%n%d개를 구매했습니다.", lottoCount);
+    private static List<Integer> makeNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
+    }
+
+    private void showLottoCount(Integer lottoCount) {
+        System.out.format("%n%d개를 구매했습니다.%n", lottoCount);
     }
 
     private Integer costToLottoCount(Integer cost) {
