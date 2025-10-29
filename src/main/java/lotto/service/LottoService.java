@@ -1,0 +1,33 @@
+package lotto.service;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
+import lotto.ui.LottoUI;
+
+import java.util.Collections;
+import java.util.List;
+
+public class LottoService {
+    private final LottoUI lottoUI = new LottoUI();
+
+    public void purchase(Integer lottoCount, List<Lotto> lottos) {
+        lottoUI.showLottoCount(lottoCount);
+        for (int lottoIndex = 0; lottoIndex < lottoCount; lottoIndex++) {
+            List<Integer> numbers = makeNumbers();
+            Lotto lotto = new Lotto(numbers);
+            lottoUI.showNumbers(lotto);
+            lottos.add(lotto);
+        }
+    }
+
+    private List<Integer> makeNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
+    }
+
+
+    public Integer costToLottoCount(Integer cost) {
+        return cost / 1000;
+    }
+}
