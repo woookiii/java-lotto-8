@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.ui.CostUI;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,10 +17,19 @@ public class LottoRunner {
         final Integer cost = costUI.repeatGetCostInputUntilRight();
         final Integer lottoCount = costToLottoCount(cost);
         showLottoCount(lottoCount);
-        List<Integer> numbers = makeNumbers();
-        Lotto lotto = new Lotto(numbers);
-        showNumbers(lotto);
+        List<Lotto> lottos = new ArrayList<>();
+        purchase(lottoCount, lottos);
 
+
+    }
+
+    private void purchase(Integer lottoCount, List<Lotto> lottos) {
+        for (int lottoIndex = 0; lottoIndex < lottoCount; lottoIndex++) {
+            List<Integer> numbers = makeNumbers();
+            Lotto lotto = new Lotto(numbers);
+            showNumbers(lotto);
+            lottos.add(lotto);
+        }
     }
 
     private void showNumbers(Lotto lotto) {
