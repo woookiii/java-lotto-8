@@ -24,9 +24,15 @@ public class LottoRunner {
         guideWinningNumbersInput();
         String winningNumbersInput = getInput();
         List<String> winningNumbers = parse(winningNumbersInput);
+        validateSize(winningNumbers);
 
 
+    }
 
+    private static void validateSize(List<String> winningNumbers) {
+        if(winningNumbers.size() != 6){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
     }
 
     private static List<String> parse(String winningNumbersInput) {
