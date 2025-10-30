@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
+
     private final LottoView lottoView = new LottoView();
 
     public void purchase(Integer lottoCount, List<Lotto> lottos) {

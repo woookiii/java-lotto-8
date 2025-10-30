@@ -29,8 +29,8 @@ public class InputValidator {
         }
     }
 
-    private void isNumberInRange(Integer winningNumber, ErrorMessage errorMessage, LottoNumber startInclusive, LottoNumber endInclusive) {
-        if (winningNumber < startInclusive.getValue() || winningNumber > endInclusive.getValue()) {
+    public void isNumberInRange(Integer number, ErrorMessage errorMessage, LottoNumber startInclusive, LottoNumber endInclusive) {
+        if (number < startInclusive.getValue() || number > endInclusive.getValue()) {
             throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
@@ -50,6 +50,12 @@ public class InputValidator {
 
     public void isWinningNumbersSizeRight(List<String> winningNumbers, ErrorMessage errorMessage) {
         if (winningNumbers.size() != WINNING_NUMBERS_SIZE) {
+            throw new IllegalArgumentException(errorMessage.getMessage());
+        }
+    }
+
+    public void isBonusNumberUnique(Integer bonusNumber, List<Integer> winningNumbers, ErrorMessage errorMessage) {
+        if (winningNumbers.contains(bonusNumber)){
             throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }

@@ -7,6 +7,7 @@ import lotto.validation.InputValidator;
 import java.util.List;
 
 public class WinningNumbersController {
+
     private final InputValidator inputValidator = new InputValidator();
 
     public List<Integer> repeatGetInputUntilRight() {
@@ -26,7 +27,7 @@ public class WinningNumbersController {
         final String winningNumbersInput = Console.readLine();
         final List<String> parsedWinningNumbersInput = parse(winningNumbersInput);
         inputValidator.isWinningNumbersSizeRight(parsedWinningNumbersInput, ErrorMessage.NOT_SIX_NUMBERS);
-        inputValidator.areNumbersUnique(parsedWinningNumbersInput, ErrorMessage.NOT_UNIQUE_NUMBERS);
+        inputValidator.areNumbersUnique(parsedWinningNumbersInput, ErrorMessage.NOT_UNIQUE_WINNING_NUMBERS);
         inputValidator.isListNumeric(parsedWinningNumbersInput);
         List<Integer> winningNumbers = getIntegerList(parsedWinningNumbersInput);
         inputValidator.areNumbersInRange(winningNumbers);

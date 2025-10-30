@@ -1,6 +1,7 @@
 package lotto.runner;
 
 import lotto.Lotto;
+import lotto.controller.BonusNumberController;
 import lotto.controller.CostController;
 import lotto.controller.WinningNumbersController;
 import lotto.enumeration.GuideMessage;
@@ -14,8 +15,9 @@ import java.util.List;
 public class LottoRunner {
 
     private final LottoView lottoView = new LottoView();
-    private final WinningNumbersController winningNumbersController = new WinningNumbersController();
     private final CostController costController = new CostController();
+    private final WinningNumbersController winningNumbersController = new WinningNumbersController();
+    private final BonusNumberController bonusNumberController = new BonusNumberController();
     private final LottoService lottoService = new LottoService();
 
     public void run() {
@@ -26,6 +28,8 @@ public class LottoRunner {
         lottoService.purchase(lottoCount, lottos);
         lottoView.guideInput(GuideMessage.WINNING_NUMBERS);
         final List<Integer> winningNumbers = winningNumbersController.repeatGetInputUntilRight();
+        final Integer bonusNumber = bonusNumberController.repeatGetInputUntilRight(winningNumbers);
+
     }
 
 
