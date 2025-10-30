@@ -1,9 +1,10 @@
 package lotto.runner;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.controller.BonusNumberController;
 import lotto.controller.CostController;
 import lotto.controller.WinningNumbersController;
+import lotto.domain.Statistic;
 import lotto.enumeration.GuideMessage;
 import lotto.enumeration.LottoNumber;
 import lotto.service.LottoService;
@@ -28,7 +29,9 @@ public class LottoRunner {
         lottoService.purchase(lottoCount, lottos);
         lottoView.guideInput(GuideMessage.WINNING_NUMBERS);
         final List<Integer> winningNumbers = winningNumbersController.repeatGetInputUntilRight();
+        lottoView.guideInput(GuideMessage.BONUS_NUMBER);
         final Integer bonusNumber = bonusNumberController.repeatGetInputUntilRight(winningNumbers);
+        Statistic statistic = lottoService.calculate(lottos, winningNumbers, bonusNumber);
 
     }
 

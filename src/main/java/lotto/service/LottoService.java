@@ -1,7 +1,8 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import lotto.domain.Lotto;
+import lotto.domain.Statistic;
 import lotto.enumeration.LottoNumber;
 import lotto.view.LottoView;
 
@@ -30,6 +31,31 @@ public class LottoService {
 
     public Integer costToLottoCount(Integer cost, LottoNumber price) {
         return cost / price.getValue();
+    }
+
+    public Statistic calculate(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber) {
+        final Statistic statistic = new Statistic();
+        for (Lotto lotto : lottos) {
+            checkLotto(winningNumbers, bonusNumber, lotto, statistic);
+        }
+        return statistic;
+    }
+
+    private void checkLotto(List<Integer> winningNumbers, Integer bonusNumber, Lotto lotto, Statistic statistic) {
+        Long winCount = matchWithWinningNumbers(winningNumbers, lotto);
+        Boolean bonus = didLottoHitBonusNumber(bonusNumber, lotto);
+        statistic.add(winCount, bonus);
+    }
+
+    private long matchWithWinningNumbers(List<Integer> winningNumbers, Lotto lotto) {
+        return lotto.getNumbers()
+                .stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    private Boolean didLottoHitBonusNumber(Integer bonusNumber, Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
 }
