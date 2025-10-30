@@ -3,20 +3,20 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.enumeration.LottoNumber;
-import lotto.ui.LottoUI;
+import lotto.view.LottoView;
 
 import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
-    private final LottoUI lottoUI = new LottoUI();
+    private final LottoView lottoView = new LottoView();
 
     public void purchase(Integer lottoCount, List<Lotto> lottos) {
-        lottoUI.showLottoCount(lottoCount);
+        lottoView.showLottoCount(lottoCount);
         for (int lottoIndex = 0; lottoIndex < lottoCount; lottoIndex++) {
             List<Integer> numbers = makeNumbers();
             Lotto lotto = new Lotto(numbers);
-            lottoUI.showNumbers(lotto);
+            lottoView.showNumbers(lotto);
             lottos.add(lotto);
         }
     }
@@ -26,7 +26,6 @@ public class LottoService {
         Collections.sort(numbers);
         return numbers;
     }
-
 
     public Integer costToLottoCount(Integer cost, LottoNumber price) {
         return cost / price.getValue();

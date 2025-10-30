@@ -1,22 +1,19 @@
-package lotto.ui;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.enumeration.ErrorMessage;
 import lotto.enumeration.LottoNumber;
 import lotto.validation.InputValidator;
 
-public class CostUI {
+public class CostController {
 
     private final InputValidator inputValidator = new InputValidator();
 
-    public Integer repeatGetCostInputUntilRight() {
+    public Integer repeatGetInputUntilRight() {
         Integer cost;
         while (true) {
-            final String costInput = Console.readLine();
             try {
-                inputValidator.isNumeric(costInput, ErrorMessage.NOT_NUMERIC);
-                cost = Integer.parseInt(costInput);
-                inputValidator.isCostLottoPriceTimes(cost, ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS, LottoNumber.PRICE);
+                cost = getInput();
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
                 System.err.println(illegalArgumentException.getMessage());
@@ -25,7 +22,12 @@ public class CostUI {
         return cost;
     }
 
+    private Integer getInput() {
+        final String costInput = Console.readLine();
+        inputValidator.isNumeric(costInput, ErrorMessage.NOT_NUMERIC);
+        Integer cost = Integer.parseInt(costInput);
+        inputValidator.isCostLottoPriceTimes(cost, ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS, LottoNumber.PRICE);
 
-
-
+        return cost;
+    }
 }

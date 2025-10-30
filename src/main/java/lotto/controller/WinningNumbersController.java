@@ -1,22 +1,19 @@
-package lotto.ui;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
 import lotto.enumeration.ErrorMessage;
-import lotto.enumeration.GuideMessage;
 import lotto.validation.InputValidator;
 
 import java.util.List;
 
-public class LottoUI {
-
+public class WinningNumbersController {
     private final InputValidator inputValidator = new InputValidator();
 
-    public List<Integer> repeatGetWinningNumbersInputUntilRight() {
+    public List<Integer> repeatGetInputUntilRight() {
         List<Integer> winningNumbers;
-        while(true){
-            try{
-                winningNumbers = getWinningNumbersInput();
+        while (true) {
+            try {
+                winningNumbers = getInput();
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
                 System.err.println(illegalArgumentException.getMessage());
@@ -25,7 +22,7 @@ public class LottoUI {
         return winningNumbers;
     }
 
-    private List<Integer> getWinningNumbersInput() {
+    private List<Integer> getInput() {
         final String winningNumbersInput = Console.readLine();
         final List<String> parsedWinningNumbersInput = parse(winningNumbersInput);
         inputValidator.isWinningNumbersSizeRight(parsedWinningNumbersInput, ErrorMessage.NOT_SIX_NUMBERS);
@@ -43,17 +40,5 @@ public class LottoUI {
 
     private List<String> parse(String winningNumbersInput) {
         return List.of(winningNumbersInput.split(","));
-    }
-
-    public void showNumbers(Lotto lotto) {
-        System.out.println(lotto.getNumbers());
-    }
-
-    public void showLottoCount(Integer lottoCount) {
-        System.out.format("%n%d개를 구매했습니다.%n", lottoCount);
-    }
-
-    public void guideInput(GuideMessage guideMessage) {
-        System.out.println(guideMessage.getMessage());
     }
 }
