@@ -58,4 +58,5 @@ public class LottoService {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
+
 }

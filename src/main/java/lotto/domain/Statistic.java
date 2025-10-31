@@ -26,7 +26,7 @@ public class Statistic {
             this.hitFiveWithBonus++;
             return;
         }
-        if (winCount.equals(Prize.HIT_FIVE.getHits())) {
+        if (winCount.equals(Prize.HIT_FIVE_WITHOUT_BONUS.getHits())) {
             this.hitFiveWithoutBonus++;
             return;
         }
@@ -34,5 +34,15 @@ public class Statistic {
             this.hitSix++;
         }
         return;
+    }
+
+    public Integer calculateProfit() {
+        Integer profit = 0;
+        profit += this.hitThree * Prize.HIT_THREE.getPrize();
+        profit += this.hitFour * Prize.HIT_FOUR.getPrize();
+        profit += this.hitFiveWithoutBonus * Prize.HIT_FIVE_WITHOUT_BONUS.getPrize();
+        profit += this.hitFiveWithBonus * Prize.HIT_FIVE_WITH_BONUS.getPrize();
+        profit += this.hitSix * Prize.HIT_SIX.getPrize();
+        return profit;
     }
 }

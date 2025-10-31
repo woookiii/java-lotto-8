@@ -32,7 +32,7 @@ public class LottoRunner {
         lottoView.guideInput(GuideMessage.BONUS_NUMBER);
         final Integer bonusNumber = bonusNumberController.repeatGetInputUntilRight(winningNumbers);
         Statistic statistic = lottoService.makeStatistic(lottos, winningNumbers, bonusNumber);
-
+        final Integer profit = statistic.calculateProfit();
     }
 
 
