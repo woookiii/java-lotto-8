@@ -42,12 +42,12 @@ public class LottoService {
     }
 
     private void checkLotto(List<Integer> winningNumbers, Integer bonusNumber, Lotto lotto, Statistic statistic) {
-        Long winCount = matchWithWinningNumbers(winningNumbers, lotto);
+        Long winCount = matchLottoWithWinningNumbers(winningNumbers, lotto);
         Boolean bonus = didLottoHitBonusNumber(bonusNumber, lotto);
         statistic.add(winCount, bonus);
     }
 
-    private long matchWithWinningNumbers(List<Integer> winningNumbers, Lotto lotto) {
+    private long matchLottoWithWinningNumbers(List<Integer> winningNumbers, Lotto lotto) {
         return lotto.getNumbers()
                 .stream()
                 .filter(winningNumbers::contains)

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.enumeration.Prize;
+
 public class Statistic {
     private Integer hitThree = 0;
     private Integer hitFour = 0;
@@ -9,24 +11,28 @@ public class Statistic {
 
 
     public void add(Long winCount, Boolean bonus) {
-        if (winCount == 3) {
+        if (winCount < Prize.HIT_THREE.getHits()){
+            return;
+        }
+        if (winCount.equals(Prize.HIT_THREE.getHits())) {
             this.hitThree++;
             return;
         }
-        if (winCount == 4) {
+        if (winCount.equals(Prize.HIT_FOUR.getHits())) {
             this.hitFour++;
             return;
         }
-        if (bonus && winCount == 5) {
+        if (bonus && winCount.equals(Prize.HIT_FIVE_WITH_BONUS.getHits())) {
             this.hitFiveWithBonus++;
             return;
         }
-        if (winCount == 5) {
+        if (winCount.equals(Prize.HIT_FIVE.getHits())) {
             this.hitFiveWithoutBonus++;
             return;
         }
-        if (winCount == 6) {
+        if (winCount.equals(Prize.HIT_SIX.getHits())) {
             this.hitSix++;
         }
+        return;
     }
 }
