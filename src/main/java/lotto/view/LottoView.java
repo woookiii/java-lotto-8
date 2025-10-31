@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.Statistic;
+import lotto.enumeration.DecimalPlace;
 import lotto.enumeration.Delimiter;
 import lotto.enumeration.GuideMessage;
 import lotto.enumeration.Prize;
@@ -26,6 +27,17 @@ public class LottoView {
         System.out.println("당첨 통계");
         System.out.println("---");
         showHits(statistic);
+        showRateOfReturn(rateOfReturn);
+    }
+
+    private void showRateOfReturn(double rateOfReturn) {
+        if(rateOfReturn == (long)rateOfReturn){
+            final String seperatedRate = separateNumber(rateOfReturn, DecimalPlace.ZERO);
+            System.out.format("총 수익률은 %s%%입니다.", seperatedRate);
+            return;
+        }
+        final String seperatedRate = separateNumber(rateOfReturn, DecimalPlace.ONE);
+        System.out.format("총 수익률은 %s%%입니다.", seperatedRate);
     }
 
     private void showHits(Statistic statistic) {
@@ -37,19 +49,24 @@ public class LottoView {
     }
 
     private void showHitTimesWithPrizeWhenBonus(Prize prize, Integer hitTimes) {
-        String money = separateNumber(prize.getPrize());
-        String times = separateNumber(hitTimes);
+        final String money = separateNumber(prize.getPrize(), DecimalPlace.ZERO);
+        final String times = separateNumber(hitTimes, DecimalPlace.ZERO);
         System.out.format("%d개 일치, 보너스 볼 일치 (%s원) - %s개", prize.getHits() , money, times);
     }
 
     private void showHitTimesWithPrize(Prize prize, Integer hitTimes) {
-        String money = separateNumber(prize.getPrize());
-        String times = separateNumber(hitTimes);
+        final String money = separateNumber(prize.getPrize(), DecimalPlace.ZERO);
+        final String times = separateNumber(hitTimes, DecimalPlace.ZERO);
         System.out.format("%d개 일치 (%s원) - %s개", prize.getHits() , money, times);
     }
 
-    private String separateNumber(Integer number) {
-        return String.format(Locale.KOREA.getCountry(), "%,d", number)
-                .replace(",", Delimiter.COMMA.getDelimiter());
+    private String separateNumber(double number, DecimalPlace decimalPlace) {
+        StringBuilder form = new StringBuilder();
+        form.append("%,.")
+                .append(decimalPlace.getDecimalPlace())
+                .append("f");
+        return String.format(Locale.KOREA.getCountry(), form, number)
+                .replace(",", Delimiter.COMMA.getDelimiter())
+                .replace(".", Delimiter.PERIOD.getDelimiter());
     }
 }

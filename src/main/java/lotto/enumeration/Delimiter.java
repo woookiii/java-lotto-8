@@ -1,7 +1,8 @@
 package lotto.enumeration;
 
 public enum Delimiter {
-    COMMA(",");
+    COMMA(","),
+    PERIOD(".");
 
     private final String delimiter;
 
