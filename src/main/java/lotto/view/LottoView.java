@@ -24,7 +24,7 @@ public class LottoView {
     }
 
     public void showResult(Statistic statistic, Double rateOfReturn) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         showHits(statistic);
         showRateOfReturn(rateOfReturn);
@@ -33,11 +33,11 @@ public class LottoView {
     private void showRateOfReturn(double rateOfReturn) {
         if(rateOfReturn == (long)rateOfReturn){
             final String seperatedRate = separateNumber(rateOfReturn, DecimalPlace.ZERO);
-            System.out.format("총 수익률은 %s%%입니다.", seperatedRate);
+            System.out.format("총 수익률은 %s%%입니다.%n", seperatedRate);
             return;
         }
         final String seperatedRate = separateNumber(rateOfReturn, DecimalPlace.ONE);
-        System.out.format("총 수익률은 %s%%입니다.", seperatedRate);
+        System.out.format("총 수익률은 %s%%입니다.%n", seperatedRate);
     }
 
     private void showHits(Statistic statistic) {
@@ -51,13 +51,13 @@ public class LottoView {
     private void showHitTimesWithPrizeWhenBonus(Prize prize, Integer hitTimes) {
         final String money = separateNumber(prize.getPrize(), DecimalPlace.ZERO);
         final String times = separateNumber(hitTimes, DecimalPlace.ZERO);
-        System.out.format("%d개 일치, 보너스 볼 일치 (%s원) - %s개", prize.getHits() , money, times);
+        System.out.format("%d개 일치, 보너스 볼 일치 (%s원) - %s개%n", prize.getHits() , money, times);
     }
 
     private void showHitTimesWithPrize(Prize prize, Integer hitTimes) {
         final String money = separateNumber(prize.getPrize(), DecimalPlace.ZERO);
         final String times = separateNumber(hitTimes, DecimalPlace.ZERO);
-        System.out.format("%d개 일치 (%s원) - %s개", prize.getHits() , money, times);
+        System.out.format("%d개 일치 (%s원) - %s개%n", prize.getHits() , money, times);
     }
 
     private String separateNumber(double number, DecimalPlace decimalPlace) {
@@ -65,7 +65,7 @@ public class LottoView {
         form.append("%,.")
                 .append(decimalPlace.getDecimalPlace())
                 .append("f");
-        return String.format(Locale.KOREA.getCountry(), form, number)
+        return String.format(Locale.KOREA, form.toString(), number)
                 .replace(",", Delimiter.COMMA.getDelimiter())
                 .replace(".", Delimiter.PERIOD.getDelimiter());
     }

@@ -24,7 +24,7 @@ public class LottoService {
     }
 
     private List<Integer> makeNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.START_INCLUSIVE.getValue(), LottoNumber.END_INCLUSIVE.getValue(), LottoNumber.NUMBERS_SIZE.getValue());
         Collections.sort(numbers);
         return numbers;
     }
