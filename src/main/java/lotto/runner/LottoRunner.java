@@ -33,6 +33,7 @@ public class LottoRunner {
         final Integer bonusNumber = bonusNumberController.repeatGetInputUntilRight(winningNumbers);
         Statistic statistic = lottoService.makeStatistic(lottos, winningNumbers, bonusNumber);
         final Integer profit = statistic.calculateProfit();
+        final Double rateOfReturn = lottoService.calculateRateOfReturn(profit, cost);
     }
 
 

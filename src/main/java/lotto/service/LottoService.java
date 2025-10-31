@@ -58,5 +58,9 @@ public class LottoService {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
+    public Double calculateRateOfReturn(Integer profit, Integer cost) {
+        Double rateOfReturn = (double) profit / cost;
+        return rateOfReturn;
+    }
 
 }
