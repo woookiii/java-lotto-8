@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.enumeration.Delimiter;
 import lotto.enumeration.ErrorMessage;
 import lotto.validation.InputValidator;
 
@@ -25,7 +26,7 @@ public class WinningNumbersController {
 
     private List<Integer> getInput() {
         final String winningNumbersInput = Console.readLine();
-        final List<String> parsedWinningNumbersInput = parse(winningNumbersInput);
+        final List<String> parsedWinningNumbersInput = parseWinningNumbers(winningNumbersInput, Delimiter.COMMA);
         inputValidator.isWinningNumbersSizeRight(parsedWinningNumbersInput, ErrorMessage.NOT_SIX_NUMBERS);
         inputValidator.areNumbersUnique(parsedWinningNumbersInput, ErrorMessage.NOT_UNIQUE_WINNING_NUMBERS);
         inputValidator.isListNumeric(parsedWinningNumbersInput);
@@ -39,7 +40,7 @@ public class WinningNumbersController {
     }
 
 
-    private List<String> parse(String winningNumbersInput) {
-        return List.of(winningNumbersInput.split(","));
+    private List<String> parseWinningNumbers(String winningNumbersInput, Delimiter delimiter) {
+        return List.of(winningNumbersInput.split(delimiter.getDelimiter()));
     }
 }

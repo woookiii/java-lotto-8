@@ -11,7 +11,7 @@ public class Statistic {
 
 
     public void add(Long winCount, Boolean bonus) {
-        if (winCount < Prize.HIT_THREE.getHits()){
+        if (winCount < Prize.HIT_THREE.getHits()) {
             return;
         }
         if (winCount.equals(Prize.HIT_THREE.getHits())) {
