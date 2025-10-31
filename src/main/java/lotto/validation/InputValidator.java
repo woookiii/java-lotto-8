@@ -10,7 +10,7 @@ public class InputValidator {
 
     public static final int WINNING_NUMBERS_SIZE = 6;
 
-    public void isCostLottoPriceTimes(Integer cost, ErrorMessage errorMessage, LottoNumber price) {
+    public void isCostLottoPriceTimes(Long cost, ErrorMessage errorMessage, LottoNumber price) {
         if (cost % price.getValue() != 0) {
             throw new IllegalArgumentException(errorMessage.getMessage());
         }

@@ -29,8 +29,8 @@ public class LottoService {
         return numbers;
     }
 
-    public Integer costToLottoCount(Integer cost, LottoNumber price) {
-        return cost / price.getValue();
+    public Integer costToLottoCount(Long cost, LottoNumber price) {
+        return (int) (cost / price.getValue());
     }
 
     public Statistic makeStatistic(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber) {
@@ -58,7 +58,7 @@ public class LottoService {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    public Double calculateRateOfReturn(Integer profit, Integer cost) {
+    public Double calculateRateOfReturn(Long profit, Long cost) {
         Double rateOfReturn = (double) profit / cost;
         return rateOfReturn;
     }

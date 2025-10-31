@@ -9,8 +9,8 @@ public class CostController {
 
     private final InputValidator inputValidator = new InputValidator();
 
-    public Integer repeatGetInputUntilRight() {
-        Integer cost;
+    public Long repeatGetInputUntilRight() {
+        Long cost;
         while (true) {
             try {
                 cost = getInput();
@@ -22,10 +22,10 @@ public class CostController {
         return cost;
     }
 
-    private Integer getInput() {
+    private Long getInput() {
         final String costInput = Console.readLine();
         inputValidator.isNumeric(costInput, ErrorMessage.NOT_NUMERIC);
-        Integer cost = Integer.parseInt(costInput);
+        Long cost = Long.parseLong(costInput);
         inputValidator.isCostLottoPriceTimes(cost, ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS, LottoNumber.PRICE);
 
         return cost;

@@ -36,13 +36,33 @@ public class Statistic {
         return;
     }
 
-    public Integer calculateProfit() {
-        Integer profit = 0;
-        profit += this.hitThree * Prize.HIT_THREE.getPrize();
-        profit += this.hitFour * Prize.HIT_FOUR.getPrize();
-        profit += this.hitFiveWithoutBonus * Prize.HIT_FIVE_WITHOUT_BONUS.getPrize();
-        profit += this.hitFiveWithBonus * Prize.HIT_FIVE_WITH_BONUS.getPrize();
-        profit += this.hitSix * Prize.HIT_SIX.getPrize();
+    public Long calculateProfit() {
+        Long profit = 0L;
+        profit += (long) this.hitThree * Prize.HIT_THREE.getPrize();
+        profit += (long) this.hitFour * Prize.HIT_FOUR.getPrize();
+        profit += (long) this.hitFiveWithoutBonus * Prize.HIT_FIVE_WITHOUT_BONUS.getPrize();
+        profit += (long) this.hitFiveWithBonus * Prize.HIT_FIVE_WITH_BONUS.getPrize();
+        profit += (long) this.hitSix * Prize.HIT_SIX.getPrize();
         return profit;
+    }
+
+    public Integer getHitThree() {
+        return hitThree;
+    }
+
+    public Integer getHitFour() {
+        return hitFour;
+    }
+
+    public Integer getHitFiveWithoutBonus() {
+        return hitFiveWithoutBonus;
+    }
+
+    public Integer getHitFiveWithBonus() {
+        return hitFiveWithBonus;
+    }
+
+    public Integer getHitSix() {
+        return hitSix;
     }
 }

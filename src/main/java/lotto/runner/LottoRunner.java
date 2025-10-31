@@ -23,7 +23,7 @@ public class LottoRunner {
 
     public void run() {
         lottoView.guideInput(GuideMessage.COST);
-        final Integer cost = costController.repeatGetInputUntilRight();
+        final Long cost = costController.repeatGetInputUntilRight();
         final Integer lottoCount = lottoService.costToLottoCount(cost, LottoNumber.PRICE);
         final List<Lotto> lottos = new ArrayList<>();
         lottoService.purchase(lottoCount, lottos);
@@ -32,8 +32,9 @@ public class LottoRunner {
         lottoView.guideInput(GuideMessage.BONUS_NUMBER);
         final Integer bonusNumber = bonusNumberController.repeatGetInputUntilRight(winningNumbers);
         Statistic statistic = lottoService.makeStatistic(lottos, winningNumbers, bonusNumber);
-        final Integer profit = statistic.calculateProfit();
+        final Long profit = statistic.calculateProfit();
         final Double rateOfReturn = lottoService.calculateRateOfReturn(profit, cost);
+        lottoView.showResult(statistic, rateOfReturn);
     }
 
 
