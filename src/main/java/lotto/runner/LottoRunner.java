@@ -31,7 +31,7 @@ public class LottoRunner {
         final List<Integer> winningNumbers = winningNumbersController.repeatGetInputUntilRight();
         lottoView.guideInput(GuideMessage.BONUS_NUMBER);
         final Integer bonusNumber = bonusNumberController.repeatGetInputUntilRight(winningNumbers);
-        Statistic statistic = lottoService.calculate(lottos, winningNumbers, bonusNumber);
+        Statistic statistic = lottoService.makeStatistic(lottos, winningNumbers, bonusNumber);
 
     }
 

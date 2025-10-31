@@ -33,7 +33,7 @@ public class LottoService {
         return cost / price.getValue();
     }
 
-    public Statistic calculate(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber) {
+    public Statistic makeStatistic(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber) {
         final Statistic statistic = new Statistic();
         for (Lotto lotto : lottos) {
             checkLotto(winningNumbers, bonusNumber, lotto, statistic);
