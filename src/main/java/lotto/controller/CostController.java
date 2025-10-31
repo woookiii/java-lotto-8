@@ -16,7 +16,7 @@ public class CostController {
                 cost = getInput();
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
-                System.err.println(illegalArgumentException.getMessage());
+                System.out.println(illegalArgumentException.getMessage());
             }
         }
         return cost;

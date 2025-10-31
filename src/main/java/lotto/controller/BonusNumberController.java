@@ -18,7 +18,7 @@ public class BonusNumberController {
                 bonusNumber = getInput(winningNumbers);
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
-                System.err.println(illegalArgumentException.getMessage());
+                System.out.println(illegalArgumentException.getMessage());
             }
         }
         return bonusNumber;

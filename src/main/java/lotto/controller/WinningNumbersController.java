@@ -18,7 +18,7 @@ public class WinningNumbersController {
                 winningNumbers = getInput();
                 break;
             } catch (IllegalArgumentException illegalArgumentException) {
-                System.err.println(illegalArgumentException.getMessage());
+                System.out.println(illegalArgumentException.getMessage());
             }
         }
         return winningNumbers;
@@ -27,10 +27,10 @@ public class WinningNumbersController {
     private List<Integer> getInput() {
         final String winningNumbersInput = Console.readLine();
         final List<String> parsedWinningNumbersInput = parseWinningNumbers(winningNumbersInput, Delimiter.COMMA);
-        inputValidator.isWinningNumbersSizeRight(parsedWinningNumbersInput, ErrorMessage.NOT_SIX_NUMBERS);
-        inputValidator.areNumbersUnique(parsedWinningNumbersInput, ErrorMessage.NOT_UNIQUE_WINNING_NUMBERS);
         inputValidator.isListNumeric(parsedWinningNumbersInput);
         List<Integer> winningNumbers = getIntegerList(parsedWinningNumbersInput);
+        inputValidator.isWinningNumbersSizeRight(winningNumbers, ErrorMessage.NOT_SIX_NUMBERS);
+        inputValidator.areNumbersUnique(winningNumbers, ErrorMessage.NOT_UNIQUE_WINNING_NUMBERS);
         inputValidator.areNumbersInRange(winningNumbers);
         return winningNumbers;
     }

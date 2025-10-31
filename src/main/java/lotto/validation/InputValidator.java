@@ -42,13 +42,13 @@ public class InputValidator {
         }
     }
 
-    public void areNumbersUnique(List<String> parsedWinningNumbersInput, ErrorMessage errorMessage) {
+    public void areNumbersUnique(List<Integer> parsedWinningNumbersInput, ErrorMessage errorMessage) {
         if (parsedWinningNumbersInput.size() != new HashSet<>(parsedWinningNumbersInput).size()) {
             throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
 
-    public void isWinningNumbersSizeRight(List<String> winningNumbers, ErrorMessage errorMessage) {
+    public void isWinningNumbersSizeRight(List<Integer> winningNumbers, ErrorMessage errorMessage) {
         if (winningNumbers.size() != WINNING_NUMBERS_SIZE) {
             throw new IllegalArgumentException(errorMessage.getMessage());
         }

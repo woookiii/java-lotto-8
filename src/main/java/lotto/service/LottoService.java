@@ -6,11 +6,13 @@ import lotto.domain.Statistic;
 import lotto.enumeration.LottoNumber;
 import lotto.view.LottoView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
 
+    private static final int PERCENT = 100;
     private final LottoView lottoView = new LottoView();
 
     public void purchase(Integer lottoCount, List<Lotto> lottos) {
@@ -24,7 +26,12 @@ public class LottoService {
     }
 
     private List<Integer> makeNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.START_INCLUSIVE.getValue(), LottoNumber.END_INCLUSIVE.getValue(), LottoNumber.NUMBERS_SIZE.getValue());
+        List<Integer> unmodifiableNumbers = Randoms.pickUniqueNumbersInRange(
+                LottoNumber.START_INCLUSIVE.getValue(),
+                LottoNumber.END_INCLUSIVE.getValue(),
+                LottoNumber.NUMBERS_SIZE.getValue()
+        );
+        List<Integer> numbers = new ArrayList<>(unmodifiableNumbers);
         Collections.sort(numbers);
         return numbers;
     }
@@ -59,7 +66,7 @@ public class LottoService {
     }
 
     public Double calculateRateOfReturn(Long profit, Long cost) {
-        Double rateOfReturn = (double) profit / cost;
+        Double rateOfReturn = (double) profit * PERCENT / cost;
         return rateOfReturn;
     }
 
