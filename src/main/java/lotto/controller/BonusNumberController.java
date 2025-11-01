@@ -28,10 +28,12 @@ public class BonusNumberController {
 
     private Integer getInput(List<Integer> winningNumbers) {
         final String bonusNumberInput = Console.readLine();
+
         numericValidator.isNumeric(bonusNumberInput, ErrorMessage.NOT_NUMERIC);
         Integer bonusNumber = Integer.parseInt(bonusNumberInput);
         lottoValidator.isNumberInRange(bonusNumber, ErrorMessage.OUT_OF_BOUND_NUMBERS, LottoNumber.START_INCLUSIVE, LottoNumber.END_INCLUSIVE);
         lottoValidator.isBonusNumberUnique(bonusNumber, winningNumbers, ErrorMessage.NOT_UNIQUE_BONUS_NUMBER);
+
         return bonusNumber;
     }
 

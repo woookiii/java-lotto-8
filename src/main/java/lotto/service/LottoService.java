@@ -13,6 +13,7 @@ import java.util.List;
 public class LottoService {
 
     private static final int PERCENT = 100;
+
     private final LottoView lottoView = new LottoView();
 
     public void purchase(Integer lottoCount, List<Lotto> lottos) {
@@ -51,6 +52,9 @@ public class LottoService {
     private void checkLotto(List<Integer> winningNumbers, Integer bonusNumber, Lotto lotto, Statistic statistic) {
         Long winCount = matchLottoWithWinningNumbers(winningNumbers, lotto);
         Boolean bonus = didLottoHitBonusNumber(bonusNumber, lotto);
+        if(winCount < 3) {
+            return;
+        }
         statistic.add(winCount, bonus);
     }
 

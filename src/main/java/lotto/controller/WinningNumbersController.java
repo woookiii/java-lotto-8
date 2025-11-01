@@ -28,12 +28,14 @@ public class WinningNumbersController {
 
     private List<Integer> getInput() {
         final String winningNumbersInput = Console.readLine();
+
         final List<String> parsedWinningNumbersInput = parseWinningNumbers(winningNumbersInput, Delimiter.COMMA);
         numericValidator.isListNumeric(parsedWinningNumbersInput);
         List<Integer> winningNumbers = getIntegerList(parsedWinningNumbersInput);
         lottoValidator.isNumbersSizeRight(winningNumbers, ErrorMessage.NOT_SIX_WINNING_NUMBERS);
         lottoValidator.areNumbersUnique(winningNumbers, ErrorMessage.NOT_UNIQUE_NUMBERS);
         lottoValidator.areNumbersInRange(winningNumbers);
+
         return winningNumbers;
     }
 

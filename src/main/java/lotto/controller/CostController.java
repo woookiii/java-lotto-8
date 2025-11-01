@@ -26,6 +26,7 @@ public class CostController {
 
     private Long getInput() {
         final String costInput = Console.readLine();
+
         numericValidator.isNumeric(costInput, ErrorMessage.NOT_NUMERIC);
         Long cost = Long.parseLong(costInput);
         costValidator.isCostLottoPriceTimes(cost, ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS, LottoNumber.PRICE);

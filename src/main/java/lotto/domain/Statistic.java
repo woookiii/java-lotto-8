@@ -9,33 +9,6 @@ public class Statistic {
     private Integer hitFiveWithBonus = 0;
     private Integer hitSix = 0;
 
-
-    public void add(Long winCount, Boolean bonus) {
-        if (winCount < Prize.HIT_THREE.getHits()) {
-            return;
-        }
-        if (winCount.equals(Prize.HIT_THREE.getHits())) {
-            this.hitThree++;
-            return;
-        }
-        if (winCount.equals(Prize.HIT_FOUR.getHits())) {
-            this.hitFour++;
-            return;
-        }
-        if (bonus && winCount.equals(Prize.HIT_FIVE_WITH_BONUS.getHits())) {
-            this.hitFiveWithBonus++;
-            return;
-        }
-        if (winCount.equals(Prize.HIT_FIVE_WITHOUT_BONUS.getHits())) {
-            this.hitFiveWithoutBonus++;
-            return;
-        }
-        if (winCount.equals(Prize.HIT_SIX.getHits())) {
-            this.hitSix++;
-        }
-        return;
-    }
-
     public Long calculateProfit() {
         Long profit = 0L;
         profit += (long) this.hitThree * Prize.HIT_THREE.getPrize();
@@ -44,6 +17,40 @@ public class Statistic {
         profit += (long) this.hitFiveWithBonus * Prize.HIT_FIVE_WITH_BONUS.getPrize();
         profit += (long) this.hitSix * Prize.HIT_SIX.getPrize();
         return profit;
+    }
+
+    public void add(Long winCount, Boolean bonus) {
+        if (winCount.equals(Prize.HIT_THREE.getHits())) {
+            this.hitThree++;
+            return;
+        }
+        checkFourToSix(winCount, bonus);
+    }
+
+    private void checkFourToSix(Long winCount, Boolean bonus) {
+        if (winCount.equals(Prize.HIT_FOUR.getHits())) {
+            this.hitFour++;
+            return;
+        }
+        checkFiveToSix(winCount, bonus);
+    }
+
+    private void checkFiveToSix(Long winCount, Boolean bonus) {
+        if (bonus && winCount.equals(Prize.HIT_FIVE_WITH_BONUS.getHits())) {
+            this.hitFiveWithBonus++;
+            return;
+        }
+        if (winCount.equals(Prize.HIT_FIVE_WITHOUT_BONUS.getHits())) {
+            this.hitFiveWithoutBonus++;
+            return;
+        }
+        checkSix(winCount);
+    }
+
+    private void checkSix(Long winCount) {
+        if (winCount.equals(Prize.HIT_SIX.getHits())) {
+            this.hitSix++;
+        }
     }
 
     public Integer getHitThree() {
