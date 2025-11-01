@@ -11,11 +11,11 @@ public class Statistic {
 
     public Long calculateProfit() {
         Long profit = 0L;
-        profit += (long) this.hitThree * Prize.HIT_THREE.getPrize();
-        profit += (long) this.hitFour * Prize.HIT_FOUR.getPrize();
-        profit += (long) this.hitFiveWithoutBonus * Prize.HIT_FIVE_WITHOUT_BONUS.getPrize();
-        profit += (long) this.hitFiveWithBonus * Prize.HIT_FIVE_WITH_BONUS.getPrize();
-        profit += (long) this.hitSix * Prize.HIT_SIX.getPrize();
+        profit += (long) this.hitThree * Prize.HIT_THREE.getMoney();
+        profit += (long) this.hitFour * Prize.HIT_FOUR.getMoney();
+        profit += (long) this.hitFiveWithoutBonus * Prize.HIT_FIVE_WITHOUT_BONUS.getMoney();
+        profit += (long) this.hitFiveWithBonus * Prize.HIT_FIVE_WITH_BONUS.getMoney();
+        profit += (long) this.hitSix * Prize.HIT_SIX.getMoney();
         return profit;
     }
 

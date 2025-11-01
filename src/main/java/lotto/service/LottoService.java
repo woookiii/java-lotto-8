@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Statistic;
 import lotto.enumeration.LottoNumber;
+import lotto.enumeration.ResultMessage;
 import lotto.view.LottoView;
 
 import java.util.ArrayList;
@@ -12,12 +13,12 @@ import java.util.List;
 
 public class LottoService {
 
-    private static final int PERCENT = 100;
+    private static final int ONE_HUNDRED = 100;
 
     private final LottoView lottoView = new LottoView();
 
     public void purchase(Integer lottoCount, List<Lotto> lottos) {
-        lottoView.showLottoCount(lottoCount);
+        lottoView.showLottoCount(lottoCount, ResultMessage.PURCHASED_LOTTO_COUNT);
         for (int lottoIndex = 0; lottoIndex < lottoCount; lottoIndex++) {
             List<Integer> numbers = makeNumbers();
             Lotto lotto = new Lotto(numbers);
@@ -70,7 +71,7 @@ public class LottoService {
     }
 
     public Double calculateRateOfReturn(Long profit, Long cost) {
-        Double rateOfReturn = (double) profit * PERCENT / cost;
+        Double rateOfReturn = (double) profit * ONE_HUNDRED / cost;
         return rateOfReturn;
     }
 

@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.enumeration.Delimiter;
+import lotto.enumeration.FormatSymbol;
 import lotto.enumeration.ErrorMessage;
 import lotto.validation.LottoValidator;
 import lotto.validation.NumericValidator;
@@ -29,7 +29,7 @@ public class WinningNumbersController {
     private List<Integer> getInput() {
         final String winningNumbersInput = Console.readLine();
 
-        final List<String> parsedWinningNumbersInput = parseWinningNumbers(winningNumbersInput, Delimiter.COMMA);
+        final List<String> parsedWinningNumbersInput = parseWinningNumbers(winningNumbersInput, FormatSymbol.COMMA);
         numericValidator.isListNumeric(parsedWinningNumbersInput);
         List<Integer> winningNumbers = getIntegerList(parsedWinningNumbersInput);
         lottoValidator.isNumbersSizeRight(winningNumbers, ErrorMessage.NOT_SIX_WINNING_NUMBERS);
@@ -43,8 +43,7 @@ public class WinningNumbersController {
         return parsedWinningNumbersInput.stream().map(Integer::parseInt).toList();
     }
 
-
-    private List<String> parseWinningNumbers(String winningNumbersInput, Delimiter delimiter) {
-        return List.of(winningNumbersInput.split(delimiter.getDelimiter()));
+    private List<String> parseWinningNumbers(String winningNumbersInput, FormatSymbol delimiter) {
+        return List.of(winningNumbersInput.split(delimiter.getSymbol()));
     }
 }

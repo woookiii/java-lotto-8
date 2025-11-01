@@ -7,6 +7,7 @@ import lotto.controller.WinningNumbersController;
 import lotto.domain.Statistic;
 import lotto.enumeration.GuideMessage;
 import lotto.enumeration.LottoNumber;
+import lotto.enumeration.ResultMessage;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
 
@@ -34,7 +35,7 @@ public class LottoRunner {
         Statistic statistic = lottoService.makeStatistic(lottos, winningNumbers, bonusNumber);
         final Long profit = statistic.calculateProfit();
         final Double rateOfReturn = lottoService.calculateRateOfReturn(profit, cost);
-        lottoView.showResult(statistic, rateOfReturn);
+        lottoView.showResult(statistic, rateOfReturn, ResultMessage.HIT_STATISTIC_HEADER);
     }
 
 
