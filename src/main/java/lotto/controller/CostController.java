@@ -3,11 +3,13 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.enumeration.ErrorMessage;
 import lotto.enumeration.LottoNumber;
-import lotto.validation.InputValidator;
+import lotto.validation.CostValidator;
+import lotto.validation.NumericValidator;
 
 public class CostController {
 
-    private final InputValidator inputValidator = new InputValidator();
+    private final NumericValidator numericValidator = new NumericValidator();
+    private final CostValidator costValidator = new CostValidator();
 
     public Long repeatGetInputUntilRight() {
         Long cost;
@@ -24,9 +26,9 @@ public class CostController {
 
     private Long getInput() {
         final String costInput = Console.readLine();
-        inputValidator.isNumeric(costInput, ErrorMessage.NOT_NUMERIC);
+        numericValidator.isNumeric(costInput, ErrorMessage.NOT_NUMERIC);
         Long cost = Long.parseLong(costInput);
-        inputValidator.isCostLottoPriceTimes(cost, ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS, LottoNumber.PRICE);
+        costValidator.isCostLottoPriceTimes(cost, ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS, LottoNumber.PRICE);
 
         return cost;
     }

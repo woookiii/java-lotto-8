@@ -3,13 +3,15 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.enumeration.ErrorMessage;
 import lotto.enumeration.LottoNumber;
-import lotto.validation.InputValidator;
+import lotto.validation.LottoValidator;
+import lotto.validation.NumericValidator;
 
 import java.util.List;
 
 public class BonusNumberController {
 
-    private final InputValidator inputValidator = new InputValidator();
+    private final NumericValidator numericValidator = new NumericValidator();
+    private final LottoValidator lottoValidator = new LottoValidator();
 
     public Integer repeatGetInputUntilRight(List<Integer> winningNumbers) {
         Integer bonusNumber;
@@ -26,10 +28,10 @@ public class BonusNumberController {
 
     private Integer getInput(List<Integer> winningNumbers) {
         final String bonusNumberInput = Console.readLine();
-        inputValidator.isNumeric(bonusNumberInput, ErrorMessage.NOT_NUMERIC);
+        numericValidator.isNumeric(bonusNumberInput, ErrorMessage.NOT_NUMERIC);
         Integer bonusNumber = Integer.parseInt(bonusNumberInput);
-        inputValidator.isNumberInRange(bonusNumber, ErrorMessage.OUT_OF_BOUND_NUMBERS, LottoNumber.START_INCLUSIVE, LottoNumber.END_INCLUSIVE);
-        inputValidator.isBonusNumberUnique(bonusNumber, winningNumbers, ErrorMessage.NOT_UNIQUE_BONUS_NUMBER);
+        lottoValidator.isNumberInRange(bonusNumber, ErrorMessage.OUT_OF_BOUND_NUMBERS, LottoNumber.START_INCLUSIVE, LottoNumber.END_INCLUSIVE);
+        lottoValidator.isBonusNumberUnique(bonusNumber, winningNumbers, ErrorMessage.NOT_UNIQUE_BONUS_NUMBER);
         return bonusNumber;
     }
 

@@ -3,13 +3,15 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.enumeration.Delimiter;
 import lotto.enumeration.ErrorMessage;
-import lotto.validation.InputValidator;
+import lotto.validation.LottoValidator;
+import lotto.validation.NumericValidator;
 
 import java.util.List;
 
 public class WinningNumbersController {
 
-    private final InputValidator inputValidator = new InputValidator();
+    private final LottoValidator lottoValidator = new LottoValidator();
+    private final NumericValidator numericValidator = new NumericValidator();
 
     public List<Integer> repeatGetInputUntilRight() {
         List<Integer> winningNumbers;
@@ -27,11 +29,11 @@ public class WinningNumbersController {
     private List<Integer> getInput() {
         final String winningNumbersInput = Console.readLine();
         final List<String> parsedWinningNumbersInput = parseWinningNumbers(winningNumbersInput, Delimiter.COMMA);
-        inputValidator.isListNumeric(parsedWinningNumbersInput);
+        numericValidator.isListNumeric(parsedWinningNumbersInput);
         List<Integer> winningNumbers = getIntegerList(parsedWinningNumbersInput);
-        inputValidator.isWinningNumbersSizeRight(winningNumbers, ErrorMessage.NOT_SIX_NUMBERS);
-        inputValidator.areNumbersUnique(winningNumbers, ErrorMessage.NOT_UNIQUE_WINNING_NUMBERS);
-        inputValidator.areNumbersInRange(winningNumbers);
+        lottoValidator.isNumbersSizeRight(winningNumbers, ErrorMessage.NOT_SIX_WINNING_NUMBERS);
+        lottoValidator.areNumbersUnique(winningNumbers, ErrorMessage.NOT_UNIQUE_NUMBERS);
+        lottoValidator.areNumbersInRange(winningNumbers);
         return winningNumbers;
     }
 
