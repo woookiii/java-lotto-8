@@ -3,6 +3,7 @@ package lotto.enumeration;
 public enum ErrorMessage {
 
     NOT_THOUSAND_TIMES_NUMBERS("[ERROR] 1000원으로 나누어 떨어지는 양수를 입력해야 합니다."),
+    TOO_BIG_COST("[ERROR] 입력하신 구입금액보다 적은 금액을 입력해야 합니다"),
     NOT_NUMERIC("[ERROR] 숫자를 입력해야 합니다."),
     OUT_OF_BOUND_NUMBERS("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     NOT_UNIQUE_NUMBERS("[ERROR] 중복되지 않은 숫자를 입력해야 합니다."),
