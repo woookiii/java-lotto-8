@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NumericValidatorTest {
 
@@ -27,7 +29,7 @@ class NumericValidatorTest {
                 IllegalArgumentException.class,
                 () -> validator.isNumeric("1마", ErrorMessage.NOT_NUMERIC)
         );
-        assertEquals(ErrorMessage.NOT_NUMERIC.getMessage(), illegalArgumentException.getMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.NOT_NUMERIC.getMessage());
     }
 
     @DisplayName("숫자로_구성된_문자열_리스트가_들어오면_에러를_던지지_않는다")
@@ -49,6 +51,6 @@ class NumericValidatorTest {
                 IllegalArgumentException.class,
                 () -> validator.isListNumeric(invalidList)
         );
-        assertEquals(ErrorMessage.NOT_NUMERIC.getMessage(), illegalArgumentException.getMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.NOT_NUMERIC.getMessage());
     }
 }

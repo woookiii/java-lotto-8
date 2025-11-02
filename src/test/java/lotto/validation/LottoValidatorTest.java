@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoValidatorTest {
     private final LottoValidator validator = new LottoValidator();
@@ -31,7 +34,7 @@ class LottoValidatorTest {
                 () -> validator.areNumbersInRange(invalidNumbers)
         );
 
-        assertEquals(ErrorMessage.OUT_OF_BOUND_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.OUT_OF_BOUND_NUMBERS.getMessage());
     }
 
     @DisplayName("숫자가_범위_안에_있을_때_에러를_던지지_않는다")
@@ -53,7 +56,7 @@ class LottoValidatorTest {
                 IllegalArgumentException.class,
                 () -> validator.isNumberInRange(inValidNumber, ErrorMessage.OUT_OF_BOUND_NUMBERS, LottoNumber.START_INCLUSIVE, LottoNumber.END_INCLUSIVE)
         );
-        assertEquals(ErrorMessage.OUT_OF_BOUND_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.OUT_OF_BOUND_NUMBERS.getMessage());
     }
 
     @DisplayName("중복되지_않은_숫자들일_때_에러를_던지지_않는다")
@@ -75,7 +78,7 @@ class LottoValidatorTest {
                 IllegalArgumentException.class,
                 () -> validator.areNumbersUnique(inValidNumbers, ErrorMessage.NOT_UNIQUE_NUMBERS)
         );
-        assertEquals(ErrorMessage.NOT_UNIQUE_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.NOT_UNIQUE_NUMBERS.getMessage());
     }
 
     @DisplayName("사이즈가_6일_때_에러를_던지지_않는다")
@@ -97,7 +100,7 @@ class LottoValidatorTest {
                 IllegalArgumentException.class,
                 () -> validator.isNumbersSizeRight(invalidNumbers, ErrorMessage.NOT_SIX_WINNING_NUMBERS)
         );
-        assertEquals(ErrorMessage.NOT_SIX_WINNING_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.NOT_SIX_WINNING_NUMBERS.getMessage());
     }
 
     @DisplayName("보너스_숫자가_당첨번호와_중복되지_않을_때_에러를_던지지_않는다")
@@ -121,6 +124,6 @@ class LottoValidatorTest {
                 IllegalArgumentException.class,
                 () -> validator.isBonusNumberUnique(invalidBonusNumber, winningNumbers, ErrorMessage.NOT_UNIQUE_BONUS_NUMBER)
         );
-        assertEquals(ErrorMessage.NOT_UNIQUE_BONUS_NUMBER.getMessage(), illegalArgumentException.getMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.NOT_UNIQUE_BONUS_NUMBER.getMessage());
     }
 }

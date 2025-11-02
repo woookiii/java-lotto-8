@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 class CostValidatorTest {
@@ -31,7 +31,7 @@ class CostValidatorTest {
                 IllegalArgumentException.class,
                 () -> validator.isCostLottoPriceTimes(cost, ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS, LottoNumber.PRICE)
         );
-        assertEquals(ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS.getMessage(), exception.getMessage());
+        assertThat(exception.getMessage()).isEqualTo(ErrorMessage.NOT_THOUSAND_TIMES_NUMBERS.getMessage());
     }
 
     @DisplayName("정해둔_길이_미만의_수를_입력할_시_에러를_던지지_않는다")
@@ -51,6 +51,6 @@ class CostValidatorTest {
                 IllegalArgumentException.class,
                 () -> validator.isCostNotTooBig(invalidInput, ErrorMessage.TOO_BIG_COST)
         );
-        assertEquals(ErrorMessage.TOO_BIG_COST.getMessage(), illegalArgumentException.getMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.TOO_BIG_COST.getMessage());
     }
 }
