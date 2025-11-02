@@ -16,7 +16,7 @@ class LottoServiceTest {
     private final LottoService lottoService = new LottoService();
 
 
-    @DisplayName("로또를_지정된_개수만큼_구매한다")
+    @DisplayName("로또를 지정된 개수만큼 구매한다.")
     @Test
     void purchase() {
         final List<Lotto> lottos = new ArrayList<>();
@@ -30,7 +30,7 @@ class LottoServiceTest {
         }
     }
 
-    @DisplayName("비용을_로또_개수로_바꾼다")
+    @DisplayName("비용을 로또 개수로 바꾼다.")
     @Test
     void costToLottoCount() {
         final Long cost = 5000L;
@@ -41,7 +41,7 @@ class LottoServiceTest {
         assertThat(count).isEqualTo(5);
     }
 
-    @DisplayName("로또_리스트를_통계화_하고_결과를_확인한다")
+    @DisplayName("로또 리스트를 통계화하고, 결과를 확인한다.")
     @Test
     void makeStatistic() {
         final Lotto lotto1 = new Lotto(List.of(1, 2, 3, 10, 20, 30));
@@ -60,7 +60,7 @@ class LottoServiceTest {
         assertThat(statistic.getHitSix()).isEqualTo(0);
     }
 
-    @DisplayName("총_수익과_비용이_주어졌을_때_수익률을_계산한다.")
+    @DisplayName("총 수익과 비용이 주어졌을 때, 수익률을 계산한다.")
     @Test
     void calculateRateOfReturn() {
         final Long profit = 8000L;

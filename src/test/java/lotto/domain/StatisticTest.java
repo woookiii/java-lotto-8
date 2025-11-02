@@ -15,7 +15,7 @@ class StatisticTest {
         statistic = new Statistic();
     }
 
-    @DisplayName("주어진_통계에_대해_수익을_계산한다")
+    @DisplayName("주어진 통계에 대해 수익을 계산한다.")
     @Test
     void calculateProfit() {
         statistic.add(3L, false);
@@ -29,7 +29,7 @@ class StatisticTest {
         assertThat(statistic.calculateProfit()).isEqualTo(expectedResult);
     }
 
-    @DisplayName("통계를_추가한다")
+    @DisplayName("통계를 추가한다.")
     @Test
     void add() {
         statistic.add(3L, false);

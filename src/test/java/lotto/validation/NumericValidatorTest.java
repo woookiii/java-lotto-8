@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class NumericValidatorTest {
 
     private final NumericValidator validator = new NumericValidator();
 
-    @DisplayName("숫자_값이_들어오면_에러를_던지지_않는다")
+    @DisplayName("숫자 값이 들어오면 에러를 던지지 않는다.")
     @Test
     void isNumeric_valid() {
         assertDoesNotThrow(() ->
@@ -22,17 +22,15 @@ class NumericValidatorTest {
         );
     }
 
-    @DisplayName("숫자가_아닌_값이_들어오면_에러를_메시지와_함께_던진다")
+    @DisplayName("숫자가 아닌 값이 들어오면, 에러를 메시지와 함께 던진다.")
     @Test
     void isNumeric_invalid() {
-        final IllegalArgumentException illegalArgumentException = assertThrows(
-                IllegalArgumentException.class,
-                () -> validator.isNumeric("1마", ErrorMessage.NOT_NUMERIC)
-        );
-        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.NOT_NUMERIC.getMessage());
+        assertThatThrownBy(() -> validator.isNumeric("1마", ErrorMessage.NOT_NUMERIC))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.NOT_NUMERIC.getMessage());
     }
 
-    @DisplayName("숫자로_구성된_문자열_리스트가_들어오면_에러를_던지지_않는다")
+    @DisplayName("숫자로 구성된 문자열 리스트가 들어오면 에러를 던지지 않는다.")
     @Test
     void isListNumeric_valid() {
         final List<String> validList = List.of("1", "23", "45", "1", "24", "21");
@@ -42,15 +40,13 @@ class NumericValidatorTest {
         );
     }
 
-    @DisplayName("숫자가_아닌_문자열이_포함된_리스트가_들어오면_에러를_메시지와_함께_던진다")
+    @DisplayName("숫자가 아닌 문자열이 포함된 리스트가 들어오면, 에러를 메시지와 함께 던진다.")
     @Test
     void isListNumeric_invalid() {
         final List<String> invalidList = List.of("1", "2a", "3", "4", "5", "6");
 
-        final IllegalArgumentException illegalArgumentException = assertThrows(
-                IllegalArgumentException.class,
-                () -> validator.isListNumeric(invalidList)
-        );
-        assertThat(illegalArgumentException.getMessage()).isEqualTo(ErrorMessage.NOT_NUMERIC.getMessage());
+        assertThatThrownBy(() -> validator.isListNumeric(invalidList))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.NOT_NUMERIC.getMessage());
     }
 }
