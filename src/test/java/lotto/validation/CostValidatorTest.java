@@ -47,10 +47,10 @@ class CostValidatorTest {
     void isCostNotTooBig_invalid() {
         final String invalidInput = "1234567890";
 
-        final IllegalArgumentException exception = assertThrows(
+        final IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> validator.isCostNotTooBig(invalidInput, ErrorMessage.TOO_BIG_COST)
         );
-        assertEquals(ErrorMessage.TOO_BIG_COST.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessage.TOO_BIG_COST.getMessage(), illegalArgumentException.getMessage());
     }
 }

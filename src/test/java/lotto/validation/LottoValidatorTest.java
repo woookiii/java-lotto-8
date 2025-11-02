@@ -26,12 +26,12 @@ class LottoValidatorTest {
     void areNumbersInRange_invalid() {
         final List<Integer> invalidNumbers = Arrays.asList(1,2,3,4,5,46);
 
-        final IllegalArgumentException exception = assertThrows(
+        final IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> validator.areNumbersInRange(invalidNumbers)
         );
 
-        assertEquals(ErrorMessage.OUT_OF_BOUND_NUMBERS.getMessage(), exception.getMessage());
+        assertEquals(ErrorMessage.OUT_OF_BOUND_NUMBERS.getMessage(), illegalArgumentException.getMessage());
     }
 
     @DisplayName("숫자가_범위_안에_있을_때_에러를_던지지_않는다")
@@ -49,11 +49,11 @@ class LottoValidatorTest {
     void isNumberInRange_invalid() {
         final Integer inValidNumber = 48;
 
-        final IllegalArgumentException ex = assertThrows(
+        final IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> validator.isNumberInRange(inValidNumber, ErrorMessage.OUT_OF_BOUND_NUMBERS, LottoNumber.START_INCLUSIVE, LottoNumber.END_INCLUSIVE)
         );
-        assertEquals(ErrorMessage.OUT_OF_BOUND_NUMBERS.getMessage(), ex.getMessage());
+        assertEquals(ErrorMessage.OUT_OF_BOUND_NUMBERS.getMessage(), illegalArgumentException.getMessage());
     }
 
     @DisplayName("중복되지_않은_숫자들일_때_에러를_던지지_않는다")
@@ -71,11 +71,11 @@ class LottoValidatorTest {
     void areNumbersUnique_invalid() {
         final List<Integer> inValidNumbers = Arrays.asList(1, 2, 3, 3, 5, 6);
 
-        final IllegalArgumentException ex = assertThrows(
+        final IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> validator.areNumbersUnique(inValidNumbers, ErrorMessage.NOT_UNIQUE_NUMBERS)
         );
-        assertEquals(ErrorMessage.NOT_UNIQUE_NUMBERS.getMessage(), ex.getMessage());
+        assertEquals(ErrorMessage.NOT_UNIQUE_NUMBERS.getMessage(), illegalArgumentException.getMessage());
     }
 
     @DisplayName("사이즈가_6일_때_에러를_던지지_않는다")
@@ -93,11 +93,11 @@ class LottoValidatorTest {
     void isNumbersSizeRight_invalid() {
         final List<Integer> invalidNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
 
-        final IllegalArgumentException ex = assertThrows(
+        final IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> validator.isNumbersSizeRight(invalidNumbers, ErrorMessage.NOT_SIX_WINNING_NUMBERS)
         );
-        assertEquals(ErrorMessage.NOT_SIX_WINNING_NUMBERS.getMessage(), ex.getMessage());
+        assertEquals(ErrorMessage.NOT_SIX_WINNING_NUMBERS.getMessage(), illegalArgumentException.getMessage());
     }
 
     @DisplayName("보너스_숫자가_당첨번호와_중복되지_않을_때_에러를_던지지_않는다")
@@ -117,10 +117,10 @@ class LottoValidatorTest {
         final List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         final Integer invalidBonusNumber = 1;
 
-        final IllegalArgumentException ex = assertThrows(
+        final IllegalArgumentException illegalArgumentException = assertThrows(
                 IllegalArgumentException.class,
                 () -> validator.isBonusNumberUnique(invalidBonusNumber, winningNumbers, ErrorMessage.NOT_UNIQUE_BONUS_NUMBER)
         );
-        assertEquals(ErrorMessage.NOT_UNIQUE_BONUS_NUMBER.getMessage(), ex.getMessage());
+        assertEquals(ErrorMessage.NOT_UNIQUE_BONUS_NUMBER.getMessage(), illegalArgumentException.getMessage());
     }
 }
