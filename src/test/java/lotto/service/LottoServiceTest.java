@@ -15,7 +15,6 @@ class LottoServiceTest {
 
     private final LottoService lottoService = new LottoService();
 
-
     @DisplayName("로또를 지정된 개수만큼 구매한다.")
     @Test
     void purchase() {
